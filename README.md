@@ -6,6 +6,7 @@ query honda API to find all dealerships that are stocking 2020 Clarity by zip co
 ```
 pip3 install -r requirements.txt
 python3 clarity_finder.py
+python3 clarity_finder.py --year=2019 #use this to switch model year
 open clarity_dealers.txt
 ```
 ## I just want to see the data
