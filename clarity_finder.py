@@ -1,17 +1,26 @@
 import requests
 import zipcodes
+import argparse
 "https://automobiles.honda.com/tools/inventory-results/?vehiclemodelseries=clarity-plug-in-hybrid&modelYear=2020&addzipanddealer=true&zipcode=07728"
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Query Honda's API to find the elusive Clarity.")
+    parser.add_argument('--year', dest='year', action='store', default="2020",
+                        help='set the model year to look for')
+    args = parser.parse_args()
+    modelyear = args.year
+
     found = {}
-    with open('clarity_dealers.txt', 'a+') as f:
-        with open('clarity_zips_matches.txt', 'a+') as matches:
+    dealer_filename = "{}_clarity_dealers.txt".format(modelyear)
+    zips_matches_filename = "{}_clarity_zips_matches.txt".format(modelyear)
+    with open(dealer_filename, 'a+') as f:
+        with open(zips_matches_filename, 'a+') as matches:
             for i in range(1, 100000, 1):
             #for i in range(7700, 7735, 1):
                 zipcode = str(i).zfill(5)
                 if zipcodes.is_real(zipcode):
-                    url = "https://automobiles.honda.com/platform/api/v3/inventoryAndDealers?productDivisionCode=A&modelYear=2020&modelGroup=clarity-plug-in-hybrid&zipCode={}&maxDealers=5&showOnlineRetailingURL=false&preferredDealerId=".format(zipcode)
+                    url = "https://automobiles.honda.com/platform/api/v3/inventoryAndDealers?productDivisionCode=A&modelYear={}&modelGroup=clarity-plug-in-hybrid&zipCode={}&maxDealers=5&showOnlineRetailingURL=false&preferredDealerId=".format(modelyear,zipcode)
                     #print(url)
                     #print(zipcode)
                     r = requests.get(url)
