@@ -24,6 +24,12 @@ def main():
                     #print(url)
                     #print(zipcode)
                     r = requests.get(url)
+                    if r.status_code != 200:
+                        #print("[*] not zip: {}, status: {}".format(zipcode,r.status_code))
+                        continue
+                    else:
+                        #print("[*] found zip: {}, status: {}".format(zipcode,r.status_code))
+                        pass
                     inv_cnt = len(r.json()['inventory'])
                     if inv_cnt > 0:
                         for n in r.json()['inventory']:

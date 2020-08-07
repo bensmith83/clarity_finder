@@ -10,7 +10,7 @@ python3 clarity_finder.py --year=2019 #use this to switch model year
 open clarity_dealers.txt
 ```
 ## I just want to see the data
-check out [the most recent list](./clarity_dealers.txt)
+check out [the most recent list](./2020_clarity_dealers.txt)
 ## Caveats
 If Honda changes or limits their API, this might no longer work. The data in the text file is only as good as the last time it was run. It takes a while to run, I let it go overnight. The count may be inaccurate, but all of the ones listed should have or be expecting at least one Clarity. There also may be a few that are missed if there's ever a case where there are more than one dealer in the same zip+4 area. This is probably unlikely.
 
